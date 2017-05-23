@@ -12,5 +12,5 @@ public interface AddressBook {
     void update(Person person);
 
     void delete(Person person);
-    
+
 }
