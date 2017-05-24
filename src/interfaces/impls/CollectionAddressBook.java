@@ -1,6 +1,9 @@
 package interfaces.impls;
 
 import interfaces.AddressBook;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.fxml.FXMLLoader;
 import objects.Person;
 
 import java.util.ArrayList;
@@ -10,7 +13,7 @@ import java.util.ArrayList;
  */
 public class CollectionAddressBook implements AddressBook {
 
-    private ArrayList<Person> personList = new ArrayList<Person>();
+    private ObservableList<Person> personList = FXCollections.observableArrayList();
 
 
     @Override
@@ -30,7 +33,7 @@ public class CollectionAddressBook implements AddressBook {
         personList.remove(person);
     }
 
-    public ArrayList<Person> getPersonList(){
+    public ObservableList<Person> getPersonList(){
         return personList;
     }
 
@@ -44,10 +47,10 @@ public class CollectionAddressBook implements AddressBook {
     }
 
     public void fillTestData() {
-        personList.add(new Person("Ivan", "123"));
-        personList.add(new Person("Roman", "123"));
-        personList.add(new Person("Anton", "123"));
-        personList.add(new Person("Perto", "123"));
-        personList.add(new Person("Vasya", "123"));
+        personList.add(new Person("Ivan Pechkin", "123"));
+        personList.add(new Person("Roman Gyral", "123"));
+        personList.add(new Person("Anton Sedov", "123"));
+        personList.add(new Person("Perto Vaskin", "123"));
+        personList.add(new Person("Vasya Gral", "123"));
     }
 }
