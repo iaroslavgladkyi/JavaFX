@@ -1,6 +1,7 @@
 package controllers;
 
 import interfaces.impls.CollectionAddressBook;
+import javafx.collections.ListChangeListener;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -51,11 +52,17 @@ public class MainController {
         columnFIO.setCellValueFactory(new PropertyValueFactory<Person, String>("fio"));
         columnPhone.setCellValueFactory(new PropertyValueFactory<Person, String>("phone"));
 
+        addressBookImpl.getPersonList().addListener(new ListChangeListener<Person>() {
+            @Override
+            public void onChanged(Change<? extends Person> c) {
+                updateCountLable();
+            }
+        });
+
         addressBookImpl.fillTestData();
 
         tableAddressBook.setItems(addressBookImpl.getPersonList());
-
-        updateCountLable();
+        //addressBookImpl.getPersonList().remove(0);
     }
 
     private void updateCountLable() {
