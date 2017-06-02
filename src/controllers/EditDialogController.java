@@ -8,6 +8,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import objects.Person;
+import utils.DialogManager;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -53,9 +54,21 @@ public class EditDialogController implements Initializable {
 
 
     public void actionSave(ActionEvent actionEvent) {
+        if (!checkValues()){
+            return;
+        }
         person.setFio(txtFIO.getText());
         person.setPhone(txtPhone.getText());
         actionClose(actionEvent);
+    }
+
+    private boolean checkValues() {
+        if (txtFIO.getText().trim().length()==0 || txtPhone.getText().trim().length()==0){
+            DialogManager.showInfoDialog(resourceBundle.getString("error"), resourceBundle.getString("fill_field"));
+            return false;
+        }
+
+        return true;
     }
 
     @Override
